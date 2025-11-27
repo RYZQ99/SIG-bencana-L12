@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bencana;
+use App\Models\GeojsonFile; 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // Ambil semua data bencana untuk peta
-        $bencana = Bencana::all();
+        $active = GeojsonFile::where('is_deployed', true)->first();
 
-        // Kirim ke view
-        return view('dashboard.dashboard', compact('bencana'));
+        $geojson = null;
+
+        if ($active) {
+            $geojson = Storage::get("geojson/{$active->filename}");
+        }
+
+        return view('dashboard.dashboard', compact('geojson', 'active'));
     }
 }

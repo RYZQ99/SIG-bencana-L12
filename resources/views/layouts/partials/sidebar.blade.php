@@ -20,7 +20,13 @@
         </a>
     </li>
 
-   
+    <!-- Nav Item - GeoJSON -->
+    <li class="nav-item {{ request()->is('geojson*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('geojson') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>GeoJSON</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">

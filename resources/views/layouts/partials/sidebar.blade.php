@@ -4,9 +4,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dashboard') }}">
         <div class="sidebar-brand-icon">
-            <i class="fas fa-cloud-rain"></i>
+            <i class="fas fa-map-marker-alt"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Peramalan Curah Hujan</div>
+        <div class="sidebar-brand-text mx-3">PETA KERENTANAN </div>
     </a>
 
     <!-- Divider -->
@@ -15,8 +15,8 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('dashboard') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
+            <i class="fas fa-fw fa-map"></i>
+            <span>Peta</span>
         </a>
     </li>
 

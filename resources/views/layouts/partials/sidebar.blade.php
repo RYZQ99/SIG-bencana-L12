@@ -20,75 +20,7 @@
         </a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">Master Data Wilayah</div>
-
-    <!-- Nav Item - Master Data Collapse Menu -->
-    @php
-        $isMasterActive = request()->is('master/regencies*') ||
-                          request()->is('master/districts*') ||
-                          request()->is('master/villages*') ||
-                          request()->is('master/stations*');
-    @endphp
-
-    <li class="nav-item {{ $isMasterActive ? 'active' : '' }}">
-        <a class="nav-link {{ $isMasterActive ? '' : 'collapsed' }}"
-           href="#"
-           data-toggle="collapse"
-           data-target="#collapseMaster"
-           aria-expanded="{{ $isMasterActive ? 'true' : 'false' }}"
-           aria-controls="collapseMaster">
-            <i class="fas fa-fw fa-database"></i>
-            <span>Master Wilayah</span>
-        </a>
-        <div id="collapseMaster"
-             class="collapse {{ $isMasterActive ? 'show' : '' }}"
-             aria-labelledby="headingMaster"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Wilayah & Stasiun:</h6>
-                <a class="collapse-item {{ request()->is('master/regencies*') ? 'active' : '' }}"
-                   href="{{ route('regencies.index') }}">
-                   Kabupaten / Kota
-                </a>
-                <a class="collapse-item {{ request()->is('master/districts*') ? 'active' : '' }}"
-                   href="{{ route('districts.index') }}">
-                   Kecamatan
-                </a>
-                <a class="collapse-item {{ request()->is('master/villages*') ? 'active' : '' }}"
-                   href="{{ route('villages.index') }}">
-                   Desa / Kelurahan
-                </a>
-                <a class="collapse-item {{ request()->is('master/stations*') ? 'active' : '' }}"
-                   href="{{ route('stations.index') }}">
-                   Stasiun / Pos Pengamatan
-                </a>
-            </div>
-        </div>
-    </li>
-
-    <!-- Nav Item - Data Hujan -->
-    <li class="nav-item {{ request()->is('rainfall*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('rainfall.index') }}">
-            <i class="fas fa-fw fa-cloud-rain"></i>
-            <span>Data Hujan</span>
-        </a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <div class="sidebar-heading">Peramalan Curah Hujan</div>
-    <!-- Nav Item - Forecasting -->
-    <li class="nav-item {{ request()->is('forecasting*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('forecasting.index') }}">
-            <i class="fas fa-fw fa-chart-line"></i>
-            <span>Peramalan Curah Hujan</span>
-        </a>
-    </li>
+   
 
     <!-- Divider -->
     <hr class="sidebar-divider">

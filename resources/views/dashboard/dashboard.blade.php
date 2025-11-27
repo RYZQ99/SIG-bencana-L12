@@ -1,18 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard Curah Hujan')
+@section('title', 'PEMETAAN KERENTANAN BENCANA ALAM DI MALANG RAYA')
 
 @section('content')
-    <h1 class="h3 mb-4 text-gray-800">Dashboard Curah Hujan Tahunan</h1>
-
-    {{-- 🔹 Ringkasan Statistik --}}
-    @include('dashboard.partials.cards', ['stats' => $stats])
-
-    {{-- 🔹 Grafik Tren per Kota --}}
-    @include('dashboard.partials.trend-chart', [
-        'regencies' => $regencies,
-        'selectedRegency' => $selectedRegency,
-        'chartData' => $chartData
-    ])
+    <h1>PEMETAAN KERENTANAN BENCANA ALAM DI MALANG RAYA</h1>
 
 @endsection

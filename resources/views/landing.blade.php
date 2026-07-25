@@ -17,7 +17,7 @@
 
             <!-- Gambar -->
             <div class="flex justify-center">
-                <img src="https://i.ibb.co/4PpKdnf/map.jpg" 
+                <img src="{{ asset('img/peta_landing.png') }}"
                      class="rounded shadow-lg w-96 h-auto object-cover"
                      alt="Peta">
             </div>

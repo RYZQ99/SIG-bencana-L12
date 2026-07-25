@@ -1,59 +1,478 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SIG Bencana Malang Raya
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem Informasi Geografis (SIG) berbasis Laravel untuk menampilkan dan mengelola data kerentanan bencana di wilayah Malang Raya.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Requirement
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Pastikan perangkat telah menginstall:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Docker Desktop
+- Git
 
-## Learning Laravel
+Tidak perlu menginstall:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- PHP
+- Composer
+- MySQL
+- Node.js
+- XAMPP
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Semua dependency sudah berjalan menggunakan Docker.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# Clone Project
 
-### Premium Partners
+```bash
+git clone <repository-url>
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+cd SIG-bencana-L12
+```
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Setup Project
 
-## Code of Conduct
+Jalankan satu kali setelah clone project.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+scripts/setup.bat
+```
 
-## Security Vulnerabilities
+Script akan otomatis:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Menjalankan Docker
+- Membuat file .env
+- Generate APP_KEY
+- Install Composer
+- Install Node Module
+- Menjalankan Migration Database
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Menjalankan Project
+
+Untuk development cukup jalankan
+
+```
+scripts/start.bat
+```
+
+Project dapat diakses melalui
+
+Laravel
+
+http://localhost:8000
+
+phpMyAdmin
+
+http://localhost:8080
+
+---
+
+# Menghentikan Project
+
+```
+scripts/stop.bat
+```
+
+---
+
+# Struktur Docker
+
+```
+Browser
+    │
+    ▼
+ Nginx (8000)
+    │
+    ▼
+Laravel PHP-FPM
+    │
+ ┌──┴─────────────┐
+ ▼                ▼
+MySQL         phpMyAdmin
+3306             8080
+```
+
+---
+
+# Container
+
+| Container | Fungsi |
+|------------|------------------------|
+| app | Laravel PHP |
+| nginx | Web Server |
+| mysql | Database |
+| phpmyadmin | Database Management |
+| node | Vite Development |
+
+---
+
+# Command Docker
+
+Melihat Container
+
+```bash
+docker ps
+```
+
+Masuk ke Laravel
+
+```bash
+docker compose exec app bash
+```
+
+Migration
+
+```bash
+php artisan migrate
+```
+
+Melihat Log
+
+```bash
+docker compose logs
+```
+
+---
+
+# Troubleshooting
+
+## Docker belum berjalan
+
+Buka Docker Desktop kemudian jalankan kembali
+
+```
+scripts/setup.bat
+```
+
+---
+
+## Laravel tidak dapat diakses
+
+Pastikan container nginx dan app berjalan.
+
+```
+docker ps
+```
+
+---
+
+## Database gagal terkoneksi
+
+Pastikan container mysql memiliki status Running.
+
+```
+docker ps
+```
+
+---
+
+## phpMyAdmin tidak dapat dibuka
+
+Buka
+
+http://localhost:8080
+
+---
+
+# Author
+
+Rizky Anugraha# SIG Bencana Alam Malang Raya
+
+Sistem Informasi Geografis (SIG) berbasis Laravel yang digunakan untuk memetakan tingkat kerentanan bencana alam di wilayah Malang Raya. Project ini telah dikonfigurasi menggunakan Docker sehingga seluruh developer dapat menjalankan project dengan environment yang sama tanpa perlu melakukan konfigurasi manual menggunakan XAMPP.
+
+---
+
+# Teknologi yang Digunakan
+
+* Laravel 12
+* PHP 8.2
+* MySQL 8.0
+* Nginx
+* Node.js 22
+* Docker & Docker Compose
+* Vite
+* Tailwind CSS
+
+---
+
+# Persyaratan
+
+Pastikan software berikut telah terpasang pada komputer:
+
+* Docker Desktop
+* Git
+
+> **Catatan:** Tidak diperlukan instalasi PHP, Composer, MySQL, maupun Node.js secara lokal karena seluruh environment berjalan di dalam Docker.
+
+---
+
+# Clone Project
+
+```bash
+git clone <repository-url>
+cd SIG-bencana-L12
+```
+
+---
+
+# Struktur Project
+
+```
+SIG-bencana-L12/
+│
+├── app/
+├── bootstrap/
+├── config/
+├── database/
+├── docker/
+├── public/
+├── resources/
+├── routes/
+├── storage/
+│
+├── scripts/
+│   ├── setup.bat
+│   ├── start.bat
+│   └── stop.bat
+│
+├── docker-compose.yml
+├── Dockerfile
+├── .env.example
+└── README.md
+```
+
+---
+
+# Instalasi Project
+
+Setelah project berhasil di-clone, jalankan:
+
+```
+scripts\setup.bat
+```
+
+Script ini akan secara otomatis:
+
+* Menjalankan Docker Container
+* Membuat file `.env`
+* Menginstall Composer Dependency
+* Membuat `APP_KEY`
+* Menjalankan Database Migration
+* Menginstall Node Modules
+
+> Setup hanya perlu dilakukan **sekali** setelah project pertama kali di-clone.
+
+---
+
+# Menjalankan Project
+
+Untuk memulai development, jalankan:
+
+```
+scripts\start.bat
+```
+
+Script akan secara otomatis:
+
+* Menjalankan seluruh Docker Container
+* Menjalankan Vite Development Server
+* Membuka browser
+
+---
+
+# Menghentikan Project
+
+Setelah selesai bekerja, jalankan:
+
+```
+scripts\stop.bat
+```
+
+Script akan menghentikan seluruh Docker Container dengan aman.
+
+---
+
+# Akses Aplikasi
+
+Setelah project berhasil dijalankan, aplikasi dapat diakses melalui:
+
+| Service    | URL                   |
+| ---------- | --------------------- |
+| Laravel    | http://localhost:8000 |
+| phpMyAdmin | http://localhost:8080 |
+
+---
+
+# Perintah Docker yang Sering Digunakan
+
+### Masuk ke Container Laravel
+
+```bash
+docker compose exec app bash
+```
+
+### Menjalankan Artisan
+
+```bash
+docker compose exec app php artisan
+```
+
+Contoh:
+
+```bash
+docker compose exec app php artisan migrate
+```
+
+```bash
+docker compose exec app php artisan make:model NamaModel -m
+```
+
+---
+
+### Menjalankan Composer
+
+```bash
+docker compose exec app composer install
+```
+
+```bash
+docker compose exec app composer update
+```
+
+---
+
+### Menjalankan NPM
+
+```bash
+docker compose exec node npm install
+```
+
+```bash
+docker compose exec node npm run build
+```
+
+---
+
+### Menampilkan Log
+
+```bash
+docker compose logs
+```
+
+Log Laravel:
+
+```bash
+docker compose logs app
+```
+
+Log MySQL:
+
+```bash
+docker compose logs mysql
+```
+
+Log Nginx:
+
+```bash
+docker compose logs nginx
+```
+
+---
+
+### Melihat Status Container
+
+```bash
+docker compose ps
+```
+
+---
+
+### Menghentikan Container
+
+```bash
+docker compose down
+```
+
+---
+
+### Menjalankan Kembali Container
+
+```bash
+docker compose up -d
+```
+
+---
+
+# Troubleshooting
+
+## Docker Desktop belum berjalan
+
+Pastikan Docker Desktop telah dijalankan sebelum menggunakan project.
+
+---
+
+## Gagal terhubung ke Database
+
+Pastikan container MySQL sudah berjalan.
+
+```bash
+docker compose ps
+```
+
+---
+
+## Container tidak berjalan
+
+Periksa log Docker.
+
+```bash
+docker compose logs
+```
+
+---
+
+## Migration gagal
+
+Masuk ke container Laravel kemudian jalankan ulang migration.
+
+```bash
+docker compose exec app php artisan migrate
+```
+
+---
+
+## Membersihkan Cache Laravel
+
+```bash
+docker compose exec app php artisan optimize:clear
+```
+
+---
+
+# Catatan
+
+Project ini menggunakan Docker sebagai environment utama. Seluruh proses pengembangan, termasuk PHP, Composer, MySQL, dan Node.js dijalankan di dalam container sehingga tidak bergantung pada konfigurasi software yang terpasang di komputer developer.
+
+---
+
+# Kontributor
+
+**Developer**
+
+* Rizky Anugrah Pratama
+
+---
+
+**Universitas**
+
+Pengembangan Sistem Informasi Geografis (SIG) Pemetaan Kerentanan Bencana Alam di Malang Raya sebagai bagian dari penelitian tugas akhir.
+
+
+Universitas Bhinneka Nusantara
+
+2026

@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
 
   app:
@@ -9,17 +11,25 @@ services:
 
     working_dir: /var/www
 
+    restart: unless-stopped
+
     volumes:
       - ./:/var/www
 
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
+
+    networks:
+      - sig-network
 
   nginx:
 
     image: nginx:latest
 
     container_name: sig-nginx
+
+    restart: unless-stopped
 
     ports:
       - "8000:80"
@@ -30,6 +40,9 @@ services:
 
     depends_on:
       - app
+
+    networks:
+      - sig-network
 
   mysql:
 
@@ -51,12 +64,27 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+    networks:
+      - sig-network
+
   phpmyadmin:
+
     image: phpmyadmin/phpmyadmin
+
     container_name: sig-phpmyadmin
 
+    restart: unless-stopped
+
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
     environment:
       PMA_HOST: mysql
@@ -64,6 +92,9 @@ services:
 
     ports:
       - "8080:80"
+
+    networks:
+      - sig-network
 
   node:
 
@@ -73,11 +104,19 @@ services:
 
     working_dir: /var/www
 
+    tty: true
+
+    restart: unless-stopped
+
     volumes:
       - ./:/var/www
 
-    tty: true
+    networks:
+      - sig-network
 
 volumes:
-
   mysql_data:
+
+networks:
+  sig-network:
+    driver: bridge

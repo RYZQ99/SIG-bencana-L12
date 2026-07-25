@@ -1,187 +1,4 @@
-# SIG Bencana Malang Raya
-
-Sistem Informasi Geografis (SIG) berbasis Laravel untuk menampilkan dan mengelola data kerentanan bencana di wilayah Malang Raya.
-
----
-
-# Requirement
-
-Pastikan perangkat telah menginstall:
-
-- Docker Desktop
-- Git
-
-Tidak perlu menginstall:
-
-- PHP
-- Composer
-- MySQL
-- Node.js
-- XAMPP
-
-Semua dependency sudah berjalan menggunakan Docker.
-
----
-
-# Clone Project
-
-```bash
-git clone <repository-url>
-
-cd SIG-bencana-L12
-```
-
----
-
-# Setup Project
-
-Jalankan satu kali setelah clone project.
-
-```
-scripts/setup.bat
-```
-
-Script akan otomatis:
-
-- Menjalankan Docker
-- Membuat file .env
-- Generate APP_KEY
-- Install Composer
-- Install Node Module
-- Menjalankan Migration Database
-
----
-
-# Menjalankan Project
-
-Untuk development cukup jalankan
-
-```
-scripts/start.bat
-```
-
-Project dapat diakses melalui
-
-Laravel
-
-http://localhost:8000
-
-phpMyAdmin
-
-http://localhost:8080
-
----
-
-# Menghentikan Project
-
-```
-scripts/stop.bat
-```
-
----
-
-# Struktur Docker
-
-```
-Browser
-    │
-    ▼
- Nginx (8000)
-    │
-    ▼
-Laravel PHP-FPM
-    │
- ┌──┴─────────────┐
- ▼                ▼
-MySQL         phpMyAdmin
-3306             8080
-```
-
----
-
-# Container
-
-| Container | Fungsi |
-|------------|------------------------|
-| app | Laravel PHP |
-| nginx | Web Server |
-| mysql | Database |
-| phpmyadmin | Database Management |
-| node | Vite Development |
-
----
-
-# Command Docker
-
-Melihat Container
-
-```bash
-docker ps
-```
-
-Masuk ke Laravel
-
-```bash
-docker compose exec app bash
-```
-
-Migration
-
-```bash
-php artisan migrate
-```
-
-Melihat Log
-
-```bash
-docker compose logs
-```
-
----
-
-# Troubleshooting
-
-## Docker belum berjalan
-
-Buka Docker Desktop kemudian jalankan kembali
-
-```
-scripts/setup.bat
-```
-
----
-
-## Laravel tidak dapat diakses
-
-Pastikan container nginx dan app berjalan.
-
-```
-docker ps
-```
-
----
-
-## Database gagal terkoneksi
-
-Pastikan container mysql memiliki status Running.
-
-```
-docker ps
-```
-
----
-
-## phpMyAdmin tidak dapat dibuka
-
-Buka
-
-http://localhost:8080
-
----
-
-# Author
-
-Rizky Anugraha# SIG Bencana Alam Malang Raya
+# SIG Bencana Alam Malang Raya
 
 Sistem Informasi Geografis (SIG) berbasis Laravel yang digunakan untuk memetakan tingkat kerentanan bencana alam di wilayah Malang Raya. Project ini telah dikonfigurasi menggunakan Docker sehingga seluruh developer dapat menjalankan project dengan environment yang sama tanpa perlu melakukan konfigurasi manual menggunakan XAMPP.
 
@@ -214,7 +31,7 @@ Pastikan software berikut telah terpasang pada komputer:
 # Clone Project
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/RYZQ99/SIG-bencana-L12>
 cd SIG-bencana-L12
 ```
 
@@ -464,15 +281,10 @@ Project ini menggunakan Docker sebagai environment utama. Seluruh proses pengemb
 
 **Developer**
 
-* Rizky Anugrah Pratama
+* Rizky Anugrah
 
 ---
 
 **Universitas**
 
 Pengembangan Sistem Informasi Geografis (SIG) Pemetaan Kerentanan Bencana Alam di Malang Raya sebagai bagian dari penelitian tugas akhir.
-
-
-Universitas Bhinneka Nusantara
-
-2026

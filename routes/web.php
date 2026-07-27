@@ -6,14 +6,15 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PetaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GeojsonFileController;
+use App\Http\Controllers\PageController;
 
 // 🟩 1. Landing Page (tanpa login)
-// Landing page jadi halaman root
-Route::get('/', function () {
-    return view('landing');
-})->name('landing');
+// 🟩 Landing Page
+Route::get('/', [PageController::class, 'landing'])->name('landing');
 
-
+// 🟩 Halaman Publik
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 
 // 🟩 2. Dashboard Tanpa Login
 Route::get('/dashboard', [DashboardController::class, 'index'])

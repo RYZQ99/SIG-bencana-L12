@@ -45,63 +45,47 @@
         </a>
     </li>
 
-    @auth
+   @auth
+    @if(auth()->user()->role === 'admin')
 
-        @if(auth()->user()->role === 'admin')
+        <hr class="sidebar-divider">
 
-            <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Administrator
+        </div>
 
-            <div class="sidebar-heading">
-                Manajemen
-            </div>
+        <li class="nav-item {{ request()->is('geojson*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('geojson.index') }}">
+                <i class="fas fa-file-code"></i>
+                <span>GeoJSON</span>
+            </a>
+        </li>
 
-            <!-- GeoJSON -->
-            <li class="nav-item {{ request()->routeIs('geojson.*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('geojson.index') }}">
-                    <i class="fas fa-fw fa-file-code"></i>
-                    <span>GeoJSON</span>
-                </a>
-            </li>
-
-            <!-- Data User -->
-            <li class="nav-item {{ request()->is('users*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('users') }}">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Data User</span>
-                </a>
-            </li>
-
-        @endif
-
-    @endauth
+    @endif
+@endauth
 
     <hr class="sidebar-divider">
 
-    <div class="sidebar-heading">
-        Akun
-    </div>
+@guest
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('login') }}">
+        <i class="fas fa-sign-in-alt"></i>
+        <span>Login</span>
+    </a>
+</li>
+@endguest
 
-    @guest
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">
-                <i class="fas fa-fw fa-sign-in-alt"></i>
-                <span>Login</span>
-            </a>
-        </li>
-
-    @endguest
-
-    @auth
-
-        <li class="nav-item">
-            <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-fw fa-sign-out-alt"></i>
-                <span>Logout</span>
-            </a>
-        </li>
-
-    @endauth
+@auth
+<li class="nav-item">
+    <a class="nav-link"
+       href="#"
+       data-toggle="modal"
+       data-target="#logoutModal">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+    </a>
+</li>
+@endauth
 
     <hr class="sidebar-divider d-none d-md-block">
 

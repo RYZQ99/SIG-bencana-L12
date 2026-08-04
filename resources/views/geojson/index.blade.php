@@ -28,7 +28,21 @@
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route('geojson.deploy', $file->id) }}" class="btn btn-success btn-sm">Deploy</a>
+                    @if($file->is_deployed)
+
+    <a href="{{ route('geojson.undeploy', $file->id) }}"
+       class="btn btn-warning btn-sm">
+        Undeploy
+    </a>
+
+@else
+
+    <a href="{{ route('geojson.deploy', $file->id) }}"
+       class="btn btn-success btn-sm">
+        Deploy
+    </a>
+
+@endif
                     <a href="{{ route('geojson.show', $file->id) }}" class="btn btn-info btn-sm">View</a>
 
                     <form method="POST" action="{{ route('geojson.destroy', $file->id) }}" style="display:inline;">

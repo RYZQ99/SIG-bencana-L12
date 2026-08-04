@@ -44,6 +44,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/geojson/{id}', [GeojsonFileController::class, 'show'])->name('geojson.show');
     Route::get('/geojson/deploy/{id}', [GeojsonFileController::class, 'deploy'])->name('geojson.deploy');
     Route::delete('/geojson/{id}', [GeojsonFileController::class, 'destroy'])->name('geojson.destroy');
+    Route::get('/geojson/undeploy/{id}', [GeojsonFileController::class, 'undeploy'])
+    ->name('geojson.undeploy');
 });
 
 // 🟦 5. Route file GeoJSON (tanpa login)

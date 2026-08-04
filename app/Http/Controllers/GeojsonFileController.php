@@ -75,4 +75,14 @@ class GeojsonFileController extends Controller
 
         return redirect()->route('geojson.index')->with('success', 'GeoJSON berhasil dihapus.');
     }
+
+    public function undeploy($id)
+{
+    $file = GeojsonFile::findOrFail($id);
+
+    $file->is_deployed = false;
+    $file->save();
+
+    return redirect()->back()->with('success', 'GeoJSON berhasil di-undeploy!');
+}
 }

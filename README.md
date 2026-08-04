@@ -83,7 +83,7 @@ Script ini akan secara otomatis:
 * Menginstall Node Modules
 
 > Setup hanya perlu dilakukan **sekali** setelah project pertama kali di-clone.
-
+> Jalankan code docker compose exec app php artisan db:seed
 ---
 
 # Menjalankan Project

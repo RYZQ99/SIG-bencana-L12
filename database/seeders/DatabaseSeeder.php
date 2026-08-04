@@ -13,13 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::truncate(); // Menghapus seluruh data user sebelumnya (opsional)
+         User::truncate();
 
         User::create([
             'name' => 'Administrator',
             'email' => 'admin@sig.com',
             'email_verified_at' => now(),
             'password' => Hash::make('admin123'),
+            'role' => 'admin', // Tambahkan ini
         ]);
 
         User::create([
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'rizky@sig.com',
             'email_verified_at' => now(),
             'password' => Hash::make('rizky123'),
+            'role' => 'user', // Opsional
         ]);
     }
 }
